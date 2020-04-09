@@ -19,33 +19,34 @@ Programmatic:
 ```javascript
 //Simple alert
 this.alert({
-  title: 'Title of the alert',
-  content: '<p>some content as HTML</p> or just text'
+  type: 'success',
+  message: '<p>some content as HTML</p> or just text'
 });
 
-//Close alert (just pass options as empty)
-this.alert();
-
-//Components
-import Component from '@/components/Component.vue';
-
+//Close alert with callback
 this.alert({
-  title: 'Title of the alert',
-  component: Component,
-  props: {
-    prop1: 'prop1',
-    prop2: 'prop2',
-    ...
+    close: true,
+    afterClose: () => {
+      //callback function here
+    }
+});
+
+//Reload
+this.alert({
+  reload: {
+    type: 'error',
+    message: 'Error message here'
   }
 });
-
 ```
 
 ## Options
 
 option | value
 ------ | -----
-title | string
-content | string (text or html)
-component | object (imported component)
-props | object (props of imported component)
+type | string (success, info, warning, error/fail/danger)
+message | string (text or html)
+reload | object (imported component)
+lock | boolean
+close | boolean
+afterClose | function
